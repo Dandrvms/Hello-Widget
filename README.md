@@ -9,7 +9,7 @@ java -Dorg.csstudio.display.builder.representation.spi.WidgetRepresentationsServ
 ```
 
 #### linux
-Make a bash script, such as `phoebus.sh`, and modify the excec command: set the path to the jar as `$WIDGET_JAR`, and phoebus jar would be `$PH_JAR`
+Make a bash script, such as `phoebus.sh`, and modify the exec command: set the path to the jar as `$WIDGET_JAR`, and phoebus jar would be `$PH_JAR`
 ```
 java -Dorg.csstudio.display.builder.representation.spi.WidgetRepresentationsService=FINE -Dfile.encoding=UTF-8 -cp "$PH_JAR:$WIDGET_JAR" org.phoebus.product.Launcher
 ```
