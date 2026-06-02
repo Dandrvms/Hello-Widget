@@ -31,6 +31,10 @@ public class Widget extends StackPane {
         text = createTile();
         getChildren().add(text);
 
+//        text.prefWidthProperty().bind(widthProperty());
+//        text.prefHeightProperty().bind(heightProperty());
+//        text.maxWidthProperty().bind(widthProperty());
+//        text.maxHeightProperty().bind(heightProperty());
         setPadding(new Insets(10));
         setBackground(new Background(new BackgroundFill(Tile.BACKGROUND.brighter(), CornerRadii.EMPTY, Insets.EMPTY)));
 
@@ -67,6 +71,14 @@ public class Widget extends StackPane {
         };
 
         timer.start();
+    }
+
+    @Override
+    protected void layoutChildren() {
+        super.layoutChildren();
+        if (text != null) {
+            text.resizeRelocate(0, 0, getWidth(), getHeight());
+        }
     }
 
     public void setDisplayedText(String text) {
