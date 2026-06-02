@@ -11,7 +11,7 @@ import org.csstudio.display.builder.model.WidgetDescriptor;
 public class HelloWidgetDescriptor extends WidgetDescriptor {
     
     public HelloWidgetDescriptor() {
-        super(HelloWidget.WIDGET_TYPE, WidgetCategory.EXTENSIONS, "Hello Widget", "", "Widget básico para demostración.");
+        super(HelloWidget.WIDGET_TYPE, WidgetCategory.MONITOR, "Hello Widget", "", "Widget básico para demostración.");
     }
 
     @Override
@@ -31,7 +31,7 @@ public class HelloWidgetDescriptor extends WidgetDescriptor {
     
     @Override
     public WidgetCategory getCategory(){
-       return WidgetCategory.EXTENSIONS; 
+       return WidgetCategory.MONITOR; 
     }
    
     @Override
