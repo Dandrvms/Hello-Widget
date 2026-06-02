@@ -86,10 +86,10 @@ public class Widget extends StackPane {
     /**
      * Stop the timer when the widget is no longer used.
      */
-    public void stop() {
-        timer.stop();
-    }
-//    public static void main(String[] args) {
-//        launch(args);
+//    public void stop() {
+//        timer.stop();
 //    }
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
