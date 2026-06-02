@@ -23,6 +23,16 @@ public class HelloWidgetRepresentation extends JFXBaseRepresentation<com.ceos.wi
         model.propText().addUntypedPropertyListener((prop, old, text) -> node.setDisplayedText((String) text));
         // Initial value
         node.setDisplayedText(model.propText().getValue());
+        
+        model.propWidth().addUntypedPropertyListener((p, old, val) -> {
+            node.setPrefWidth((Double) val);
+        });
+        
+        model.propHeight().addUntypedPropertyListener((p, old, val) -> {
+            node.setPrefHeight((Double) val);
+        });
+        
+        node.setPrefSize(model.propWidth().getValue(), model.propHeight().getValue());
     }
     
 }
