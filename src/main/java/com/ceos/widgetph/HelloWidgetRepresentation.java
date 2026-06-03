@@ -1,6 +1,10 @@
 package com.ceos.widgetph;
 
+import org.csstudio.display.builder.model.properties.WidgetFont;
+import org.csstudio.display.builder.representation.javafx.JFXFontCalibration;
+import org.csstudio.display.builder.representation.javafx.JFXUtil;
 import org.csstudio.display.builder.representation.javafx.widgets.JFXBaseRepresentation;
+import org.phoebus.ui.color.WidgetColor;
 
 /**
  *
@@ -24,15 +28,27 @@ public class HelloWidgetRepresentation extends JFXBaseRepresentation<com.ceos.wi
         // Initial value
         node.setDisplayedText(model.propText().getValue());
         
-        model.propWidth().addUntypedPropertyListener((p, old, val) -> {
-            node.setPrefWidth((Double) val);
+        // Use Number to avoid ClassCastException (Integer cannot be cast to Double)
+        model.propWidth().addUntypedPropertyListener((prop, old, val) -> {
+            node.setPrefWidth(((Number) val).doubleValue());
         });
         
-        model.propHeight().addUntypedPropertyListener((p, old, val) -> {
-            node.setPrefHeight((Double) val);
+        model.propHeight().addUntypedPropertyListener((prop, old, val) -> {
+            node.setPrefHeight(((Number) val).doubleValue());
         });
         
-        node.setPrefSize(model.propWidth().getValue(), model.propHeight().getValue());
+        node.setPrefSize(model.propWidth().getValue().doubleValue(), model.propHeight().getValue().doubleValue());
+       
+        
+        model.propBackgroundColor().addUntypedPropertyListener((prop, old, val) -> {
+            node.setTileBackgroundColor(JFXUtil.convert((WidgetColor) val));
+        });
+        
+        model.propFont().addUntypedPropertyListener((prop, old, val) -> {
+            node.setTileFont(JFXUtil.convert((WidgetFont) val));
+        });
+        
+        
     }
     
 }

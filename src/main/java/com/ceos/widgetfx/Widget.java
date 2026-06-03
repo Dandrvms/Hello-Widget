@@ -4,16 +4,18 @@ import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
 import javafx.animation.AnimationTimer;
-import static javafx.application.Application.launch;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 /**
- *
+ * Componente visual del Widget.
+ * Optimizado para responder al redimensionado de Phoebus en modo Runtime.
+ * 
  * @author Starblend
  */
 public class Widget extends StackPane {
@@ -35,9 +37,12 @@ public class Widget extends StackPane {
 //        text.prefHeightProperty().bind(heightProperty());
 //        text.maxWidthProperty().bind(widthProperty());
 //        text.maxHeightProperty().bind(heightProperty());
-        setPadding(new Insets(5));
+        setPadding(new Insets(1));
         setBackground(new Background(new BackgroundFill(Tile.BACKGROUND.brighter(), CornerRadii.EMPTY, Insets.EMPTY)));
-
+        
+        this.setPickOnBounds(true);
+        text.setMouseTransparent(true);
+        
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -67,9 +72,7 @@ public class Widget extends StackPane {
                     }
                 }
             }
-
         };
-
         timer.start();
     }
 
@@ -77,13 +80,21 @@ public class Widget extends StackPane {
     protected void layoutChildren() {
         super.layoutChildren();
         if (text != null) {
-            text.resizeRelocate(0, 0, getWidth(), getHeight() );
+            text.resizeRelocate(0, 0, getWidth(), getHeight());
         }
     }
 
     public void setDisplayedText(String text) {
         this.displayedText = text;
-        this.cindex = 0; // Restart animation with new text
+        this.cindex = 0;
+    }
+    
+    public void setTileBackgroundColor(Color color){
+        text.setBackgroundColor(color);
+    }
+    
+    public void setTileFont(Font font){
+        text.setCustomFont(font);
     }
 
     private Tile createTile() {
@@ -95,13 +106,7 @@ public class Widget extends StackPane {
                 .build();
     }
 
-    /**
-     * Stop the timer when the widget is no longer used.
-     */
     public void stop() {
         timer.stop();
     }
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
 }
