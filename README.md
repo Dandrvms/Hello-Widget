@@ -1,6 +1,6 @@
 # Phoebus Custom Widget
 
-This repository provides a sample custom widget for the [Phoebus Control System IDE](https://github.com/ControlSystemStudio/phoebus).
+This repository provides a sample custom widget for the [Phoebus Control System IDE](https://github.com/ControlSystemStudio/phoebus). If you want to run a standalone app, switch to `main` branch and use `mvn javafx:run`.
 
 ## Prerequisites
 - **Java JDK 21** (Must match the version used by your Phoebus installation).
@@ -12,7 +12,7 @@ This repository provides a sample custom widget for the [Phoebus Control System 
 ## Build Instructions
 This project uses the `maven-shade-plugin` to package all external dependencies (such as TilesFX) into a single "Fat JAR". It automatically filters out digital signatures to prevent `SecurityException` errors in the Phoebus modular environment.
 
-1. Compile and package the suite:
+1. Compile and package the widget:
    ```bash
    mvn clean install
    ```
@@ -32,7 +32,7 @@ setlocal ENABLEDELAYEDEXPANSION
 
 :: --- CONFIGURATION ---
 :: Path to your Phoebus product folder
-set "PH_HOME=C:\Path\To\phoebus-product"
+set "PH_HOME=C:\Path\To\phoebus-product\target"
 :: Path to this widget JAR
 set "WIDGET_JAR=%~dp0target\widget-0.13.0-SNAPSHOT.jar"
 
@@ -61,7 +61,7 @@ Create a file named `launch_phoebus.sh` in your project root:
 #!/bin/bash
 
 # --- CONFIGURATION ---
-PH_HOME="/home/user/phoebus-product"
+PH_HOME="/home/user/phoebus-product/target"
 WIDGET_JAR="$(pwd)/target/widget-0.13.0-SNAPSHOT.jar"
 
 # 1. Locate the main Phoebus product JAR

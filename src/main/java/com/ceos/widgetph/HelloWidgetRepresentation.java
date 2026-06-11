@@ -1,14 +1,13 @@
 package com.ceos.widgetph;
 
 import org.csstudio.display.builder.model.properties.WidgetFont;
-import org.csstudio.display.builder.representation.javafx.JFXFontCalibration;
 import org.csstudio.display.builder.representation.javafx.JFXUtil;
 import org.csstudio.display.builder.representation.javafx.widgets.JFXBaseRepresentation;
 import org.phoebus.ui.color.WidgetColor;
 
 /**
  *
- * @author Starblend
+ * @author Daniel
  */
 public class HelloWidgetRepresentation extends JFXBaseRepresentation<com.ceos.widgetfx.Widget, HelloWidget> {
 
@@ -25,10 +24,10 @@ public class HelloWidgetRepresentation extends JFXBaseRepresentation<com.ceos.wi
         final com.ceos.widgetfx.Widget node = (com.ceos.widgetfx.Widget) jfx_node;
         
         model.propText().addUntypedPropertyListener((prop, old, text) -> node.setDisplayedText((String) text));
-        // Initial value
+
         node.setDisplayedText(model.propText().getValue());
         
-        // Use Number to avoid ClassCastException (Integer cannot be cast to Double)
+
         model.propWidth().addUntypedPropertyListener((prop, old, val) -> {
             node.setPrefWidth(((Number) val).doubleValue());
         });

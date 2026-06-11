@@ -5,13 +5,12 @@ import org.csstudio.display.builder.model.Widget;
 import org.csstudio.display.builder.model.WidgetProperty;
 import org.csstudio.display.builder.model.persist.WidgetFontService;
 import org.csstudio.display.builder.model.properties.CommonWidgetProperties;
-//import org.csstudio.display.builder.model.properties.WidgetColor;
 import org.phoebus.ui.color.WidgetColor;
 import org.csstudio.display.builder.model.properties.WidgetFont;
 
 /**
  *
- * @author Starblend
+ * @author Daniel
  */
 public class HelloWidget extends Widget {
 

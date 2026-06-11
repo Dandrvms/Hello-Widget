@@ -6,7 +6,7 @@ import org.csstudio.display.builder.model.WidgetDescriptor;
 
 /**
  *
- * @author Starblend
+ * @author Daniel
  */
 public class HelloWidgetDescriptor extends WidgetDescriptor {
     

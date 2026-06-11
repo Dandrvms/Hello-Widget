@@ -14,9 +14,9 @@ import javafx.scene.text.Font;
 
 /**
  * Componente visual del Widget.
- * Optimizado para responder al redimensionado de Phoebus en modo Runtime.
  * 
- * @author Starblend
+ * 
+ * @author Daniel
  */
 public class Widget extends StackPane {
 
@@ -33,10 +33,6 @@ public class Widget extends StackPane {
         text = createTile();
         getChildren().add(text);
 
-//        text.prefWidthProperty().bind(widthProperty());
-//        text.prefHeightProperty().bind(heightProperty());
-//        text.maxWidthProperty().bind(widthProperty());
-//        text.maxHeightProperty().bind(heightProperty());
         setPadding(new Insets(1));
         setBackground(new Background(new BackgroundFill(Tile.BACKGROUND.brighter(), CornerRadii.EMPTY, Insets.EMPTY)));
         
