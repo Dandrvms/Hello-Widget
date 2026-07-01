@@ -3,9 +3,11 @@ package com.ceos.widgetph;
 import java.util.Collections;
 import java.util.Map;
 import org.csstudio.display.builder.model.WidgetDescriptor;
-import org.csstudio.display.builder.model.WidgetFactory;
+import org.csstudio.display.builder.representation.WidgetRepresentation;
 import org.csstudio.display.builder.representation.WidgetRepresentationFactory;
 import org.csstudio.display.builder.representation.spi.WidgetRepresentationsService;
+
+import static java.util.Map.entry;
 
 /**
  * Service that provides the representation factory for the HelloWidget.
@@ -13,10 +15,8 @@ import org.csstudio.display.builder.representation.spi.WidgetRepresentationsServ
 public class HelloWidgetRepresentationsService implements WidgetRepresentationsService {
 
     @Override
-    public Map<WidgetDescriptor, WidgetRepresentationFactory<?, ?>> getWidgetRepresentationFactories() {
-
-        return Collections.singletonMap(
-                WidgetFactory.getInstance().getWidgetDescriptor(HelloWidget.WIDGET_TYPE),
-                new HelloWidgetRepresentationFactory());
+    public <TWP, TW> Map<WidgetDescriptor, WidgetRepresentationFactory<TWP, TW>> getWidgetRepresentationFactories() {
+        return Map.ofEntries(
+                entry(new HelloWidgetDescriptor(), () -> (WidgetRepresentation) new HelloWidgetRepresentation()));
     }
 }

@@ -2,6 +2,8 @@
 
 This repository provides a sample custom widget for the [Phoebus Control System IDE](https://github.com/ControlSystemStudio/phoebus). If you want to run a standalone app, build the project then type`mvn javafx:run` in the root.
 
+See [dev_guide_es.md](https://github.com/Dandrvms/Hello-Widget/blob/phoebus/dev_guide_es.md) or [dev_guide_en.md](https://github.com/Dandrvms/Hello-Widget/blob/phoebus/dev_guide_en.md) for technical guide to the widget development.
+
 ## Prerequisites
 - **Java JDK 21** (Must match the version used by your Phoebus installation).
 - **Apache Maven 3.9+**.
