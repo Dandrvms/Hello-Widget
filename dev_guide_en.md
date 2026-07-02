@@ -73,6 +73,11 @@ protected void defineProperties(final List<WidgetProperty<?>> properties) {
     properties.add(backgroundColor);
 
 }
+
+//A method is created to return the property so it can be modified from the representation
+public WidgetProperty<WidgetColor> propBackgroundColor() {
+    return backgroundColor;
+}
 ```
 
 ## **`Descriptor`**
@@ -155,11 +160,6 @@ public class MyWidgetRepresentation extends JFXBaseRepresentation<MyNode, MyWidg
         });
 
         jfx_node.setPrefSize(model.propWidth().getValue().doubleValue(), model.propHeight().getValue().doubleValue());
-    }
-
-    //A method is created to return the property so it can be modified from the representation
-    public WidgetProperty<WidgetColor> propBackgroundColor() {
-        return backgroundColor;
     }
 
 }
