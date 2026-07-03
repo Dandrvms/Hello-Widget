@@ -1,15 +1,18 @@
 package com.ceos.widgetph;
 
-import org.csstudio.display.builder.model.properties.WidgetFont;
+import org.csstudio.display.builder.model.DirtyFlag;
+import org.csstudio.display.builder.model.UntypedWidgetPropertyListener;
+import org.csstudio.display.builder.model.WidgetProperty;
 import org.csstudio.display.builder.representation.javafx.JFXUtil;
 import org.csstudio.display.builder.representation.javafx.widgets.JFXBaseRepresentation;
-import org.phoebus.ui.color.WidgetColor;
 
 /**
  *
  * @author Daniel
  */
 public class HelloWidgetRepresentation extends JFXBaseRepresentation<com.ceos.widgetfx.Widget, HelloWidget> {
+    private DirtyFlag dirty_look = new DirtyFlag();
+    private final UntypedWidgetPropertyListener listener = this::manage;
 
     @Override
     protected com.ceos.widgetfx.Widget createJFXNode() throws Exception {
@@ -20,34 +23,37 @@ public class HelloWidgetRepresentation extends JFXBaseRepresentation<com.ceos.wi
     protected void registerListeners() {
         super.registerListeners();
         
-        final HelloWidget model = (HelloWidget) model_widget;
-        final com.ceos.widgetfx.Widget node = (com.ceos.widgetfx.Widget) jfx_node;
+        final HelloWidget model = model_widget;
+        model.propText().addUntypedPropertyListener(listener);
+        model.propWidth().addUntypedPropertyListener(listener);
+        model.propHeight().addUntypedPropertyListener(listener);
+        model.propBackgroundColor().addUntypedPropertyListener(listener);
+        model.propFont().addUntypedPropertyListener(listener);
         
-        model.propText().addUntypedPropertyListener((prop, old, text) -> node.setDisplayedText((String) text));
+        
+    }
 
-        node.setDisplayedText(model.propText().getValue());
-        
+    private void manage(final WidgetProperty<?> prop, final Object old, final Object val){
+        dirty_look.mark();
+        toolkit.scheduleUpdate(this);
+    }
 
-        model.propWidth().addUntypedPropertyListener((prop, old, val) -> {
-            node.setPrefWidth(((Number) val).doubleValue());
-        });
-        
-        model.propHeight().addUntypedPropertyListener((prop, old, val) -> {
-            node.setPrefHeight(((Number) val).doubleValue());
-        });
-        
-        node.setPrefSize(model.propWidth().getValue().doubleValue(), model.propHeight().getValue().doubleValue());
-       
-        
-        model.propBackgroundColor().addUntypedPropertyListener((prop, old, val) -> {
-            node.setTileBackgroundColor(JFXUtil.convert((WidgetColor) val));
-        });
-        
-        model.propFont().addUntypedPropertyListener((prop, old, val) -> {
-            node.setTileFont(JFXUtil.convert((WidgetFont) val));
-        });
-        
-        
+    @Override
+    public void updateChanges(){
+        super.updateChanges();
+
+        if(dirty_look.checkAndClear()){
+
+            int width = model_widget.propWidth().getValue();
+            int height = model_widget.propHeight().getValue();
+            jfx_node.setPrefWidth(width);
+            jfx_node.setPrefHeight(height);
+
+            jfx_node.setDisplayedText(model_widget.propText().getValue());
+            jfx_node.setTileBackgroundColor(JFXUtil.convert((model_widget.propBackgroundColor().getValue())));
+            jfx_node.setTileFont(JFXUtil.convert(model_widget.propFont().getValue()));
+
+        }
     }
     
 }

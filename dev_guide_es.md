@@ -2,7 +2,7 @@
 
 Este desarrollo puede dividirse en dos partes: Crear el nodo JavaFX y envolverlo en Phoebus.
 ## Fase 1: Desarrollar el componente JavaFX:
-Los widgets de phoebus son en esencia nodos de javafx. Cualquier componente que herede de la clase Node puede funcionar: `Pane`, `StackPane`, `Canvas`, `Group`, `Image`, entre otros.
+Los widgets de phoebus son en esencia nodos de javafx. Cualquier componente que herede de la clase `Node` puede funcionar: `Pane`, `StackPane`, `Canvas`, `Group`, `Image`, entre otros.
 
 La primera fase consiste en desarrollar un componente visual JavaFx para definir cómo deberá verse en Phoebus.
 

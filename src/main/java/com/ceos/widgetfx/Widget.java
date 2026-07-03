@@ -99,6 +99,7 @@ public class Widget extends StackPane {
                 .title("test")
                 .text("another test")
                 .backgroundColor(Color.DARKGREEN)
+                .customFontEnabled(true)
                 .build();
     }
 
