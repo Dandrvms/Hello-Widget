@@ -41,6 +41,16 @@
             <version>5.0.5</version>
             <type>jar</type>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.epics</groupId>
+                    <artifactId>pbrawclient</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.phoebus</groupId>
+                    <artifactId>install-jars</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.phoebus</groupId>
@@ -48,10 +58,25 @@
             <version>5.0.5</version>
             <type>jar</type>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.epics</groupId>
+                    <artifactId>pbrawclient</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.phoebus</groupId>
+                    <artifactId>install-jars</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
